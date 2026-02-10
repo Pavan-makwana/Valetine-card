@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff6666;
+            font-size: 2em;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            width: 250px; /* Ensuring enough space for both buttons */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff6666;
+            color: white;
+            margin-right: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #noBtn {
+            background-color: #cccccc;
+            color: #333333;
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 160px;
+            border-radius: 100px 100px 0 0;
+            background: #ff6666;
+        }
+
+        .heart:before {
+            left: 100px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .heart span {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will you be mine?</h1>
+    <div class="buttons">
+        <button id="yesBtn" class="btn">Yes</button>
+        <button id="noBtn" class="btn">No</button>
+    </div>
+    <div class="heart" id="heart">
+        <span style="text-align: center;"></p>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const heart = document.getElementById("heart");
+
+    // Function to move the "No" button to a random position within a 1500x800 boundary
+    function moveNoButton() {
+        const maxX = Math.min(1500, window.innerWidth) - noBtn.clientWidth;
+        const maxY = Math.min(800, window.innerHeight) - noBtn.clientHeight;
+        
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+    }
+
+    // Add an event listener to move the "No" button when hovered
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    // Display the heart when "Yes" is clicked
+    yesBtn.addEventListener("click", () => {
+        heart.style.display = "block";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
